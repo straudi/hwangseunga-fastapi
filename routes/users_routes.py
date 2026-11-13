@@ -123,7 +123,7 @@ async def del_user(email:str, db:Session=Depends(get_db)):
 
 @user_router.get("/one/{id}")
 async def get_user_one(id:int, db:Session = Depends(get_db)):
-    result = await db_get_one(id, db)
+    result = await user_db.db_get_one(id, db)
     if result:
         return result
     raise HTTPException(
