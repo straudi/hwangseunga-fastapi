@@ -9,6 +9,7 @@ from contextlib import asynccontextmanager
 
 from models import user_model
 from db.connection import Base, engine
+from pathlib import Path
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -40,7 +41,8 @@ app.add_middleware(
 )
 
 # 정적 파일 경로 설정
-app.mount("/static", StaticFiles(directory="static"), name="static")
+#Path("static/files").mkdir(parents=True, exist_ok=True)
+#app.mount("/static", StaticFiles(directory="static"), name="static")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
